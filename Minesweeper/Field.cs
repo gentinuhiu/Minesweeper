@@ -15,12 +15,13 @@ namespace Minesweeper
     public class Field
     {
         List<List<Mine>> field;
-        //int x, y;
+        int fieldSize;
+        int minesCount;
         public Field(int fieldSize, int minesCount)
         {
             field = new List<List<Mine>>();
-            //x = -1;
-            //y = -1;
+            this.fieldSize = fieldSize;
+            this.minesCount = minesCount;
             int horizontalOffset = 120;
             int verticalOffset = 120;
 
@@ -29,13 +30,24 @@ namespace Minesweeper
                 horizontalOffset = 65;
                 verticalOffset = 65;
             }
-
             else if (fieldSize == 20)
             {
                 horizontalOffset = 8;
                 verticalOffset = 25;
             }
 
+            for (int i = 0; i < fieldSize; i++)
+            {
+                List<Mine> row = new List<Mine>();
+                for (int j = 0; j < fieldSize; j++)
+                    row.Add(new Mine(new Point(horizontalOffset + (i * 22), verticalOffset + (j * 22))));
+                field.Add(row);
+            }
+
+            plantMines();
+        }
+        public void plantMines()
+        {
             List<Point> mines = new List<Point>();
             Random random = new Random();
             int counter = 0;
@@ -62,25 +74,16 @@ namespace Minesweeper
                     counter++;
                 }
             }
-
-
-            for (int i = 0; i < fieldSize; i++)
-            {
-                List<Mine> row = new List<Mine>();
-                for (int j = 0; j < fieldSize; j++)
-                    row.Add(new Mine(new Point(horizontalOffset + (i * 22), verticalOffset + (j * 22))));
-                field.Add(row);
-            }
             foreach (Point p in mines)
             {
                 field[p.X][p.Y].isMine = true;
             }
         }
-        public void show(Graphics g)
+        public void show(Graphics g, bool showMines)
         {
             foreach (List<Mine> row in field)
                 foreach (Mine m in row)
-                    m.draw(g);
+                    m.draw(g, showMines);
         }
         public int flag(Point mouseLocation)
         {
@@ -99,6 +102,7 @@ namespace Minesweeper
                 for (int j = 0; j < field[i].Count; j++)
                 {
                     int result = field[i][j].open(mouseLocation);
+
                     if (result == 0)
                     {
                         foreach (List<Mine> row in field)
@@ -109,8 +113,6 @@ namespace Minesweeper
                     }
                     if (result == 1)
                     {
-                        //x = i;
-                        //y = j;
                         openMines(i, j);
                         return 1;
                     }

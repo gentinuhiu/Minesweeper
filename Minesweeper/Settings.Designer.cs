@@ -39,6 +39,7 @@
             this.rbMediumDifficulty = new System.Windows.Forms.RadioButton();
             this.rbEasy = new System.Windows.Forms.RadioButton();
             this.btnStart = new System.Windows.Forms.Button();
+            this.cbShowMines = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -147,13 +148,23 @@
             // btnStart
             // 
             this.btnStart.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnStart.Location = new System.Drawing.Point(156, 330);
+            this.btnStart.Location = new System.Drawing.Point(153, 345);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(123, 32);
             this.btnStart.TabIndex = 4;
             this.btnStart.Text = "START";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // cbShowMines
+            // 
+            this.cbShowMines.AutoSize = true;
+            this.cbShowMines.Location = new System.Drawing.Point(94, 307);
+            this.cbShowMines.Name = "cbShowMines";
+            this.cbShowMines.Size = new System.Drawing.Size(239, 20);
+            this.cbShowMines.TabIndex = 5;
+            this.cbShowMines.Text = "Show mines (testing purposes only)";
+            this.cbShowMines.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -162,6 +173,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnStart;
             this.ClientSize = new System.Drawing.Size(459, 411);
+            this.Controls.Add(this.cbShowMines);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label1);
@@ -192,5 +204,6 @@
         private System.Windows.Forms.RadioButton rbMediumDifficulty;
         private System.Windows.Forms.RadioButton rbEasy;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.CheckBox cbShowMines;
     }
 }

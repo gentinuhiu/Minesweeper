@@ -22,13 +22,15 @@ namespace Minesweeper
         public int minesCount { get; set; }
         public FIELD_SIZE fieldSizeStr { get; set; }
         public DIFFICULTY difficulty { get; set; }
+        public bool showMines { get; set; }
 
-        public GameSettings(string username, FIELD_SIZE fieldSizeStr, DIFFICULTY difficulty)
+        public GameSettings(string username, FIELD_SIZE fieldSizeStr, DIFFICULTY difficulty, bool showMines)
         {
             this.username = username;
             this.fieldSizeStr = fieldSizeStr;
             this.difficulty = difficulty;
             this.fieldSize = 10;
+            this.showMines = showMines;
             minesCount = 10;
 
             if (fieldSizeStr == FIELD_SIZE.Medium)

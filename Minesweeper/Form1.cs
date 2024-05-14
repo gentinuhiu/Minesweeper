@@ -64,7 +64,7 @@ namespace Minesweeper
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            field.show(e.Graphics);   
+            field.show(e.Graphics, gameSettings.showMines);   
         }
 
         private void timer1_Tick(object sender, EventArgs e)

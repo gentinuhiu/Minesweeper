@@ -19,7 +19,7 @@ namespace Minesweeper
             tbUsername.Text = "user";
             rbMedium.Checked = true;
             rbMediumDifficulty.Checked = true;
-            gameSettings = new GameSettings(tbUsername.Text, FIELD_SIZE.Medium, DIFFICULTY.Medium);
+            gameSettings = new GameSettings(tbUsername.Text, FIELD_SIZE.Medium, DIFFICULTY.Medium, false);
         }
         private void Settings_Load(object sender, EventArgs e)
         {
@@ -30,6 +30,7 @@ namespace Minesweeper
         {
             FIELD_SIZE fieldSize;
             DIFFICULTY difficulty;
+            bool showMines = cbShowMines.Checked;
 
             if (rbSmall.Checked)
                 fieldSize = FIELD_SIZE.Small;
@@ -43,7 +44,7 @@ namespace Minesweeper
                 difficulty = DIFFICULTY.Medium;
             else difficulty = DIFFICULTY.Hard;
 
-            gameSettings = new GameSettings(tbUsername.Text, fieldSize, difficulty);
+            gameSettings = new GameSettings(tbUsername.Text, fieldSize, difficulty, showMines);
             DialogResult = DialogResult.OK;
         }
         public void configure(GameSettings gameSettings, bool showForm)
@@ -62,9 +63,11 @@ namespace Minesweeper
                 rbMediumDifficulty.Checked = true;
             else rbHard.Checked = true;
 
+            cbShowMines.Checked = gameSettings.showMines;
+
             if (!showForm)
             {
-                this.gameSettings = new GameSettings(gameSettings.username, gameSettings.fieldSizeStr, gameSettings.difficulty);
+                this.gameSettings = new GameSettings(gameSettings.username, gameSettings.fieldSizeStr, gameSettings.difficulty, gameSettings.showMines);
             }
         }
     }

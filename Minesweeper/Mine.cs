@@ -27,7 +27,7 @@ namespace Minesweeper
             showMine = false;
             number = -1;
         }
-        public void draw(Graphics g)
+        public void draw(Graphics g, bool showMines)
         {
             Brush b = new SolidBrush(Color.DarkGray);
             Pen p = new Pen(Color.Gray);
@@ -38,11 +38,12 @@ namespace Minesweeper
             if (isFlagged)
                 b = new SolidBrush(Color.Orange);
 
-            if (showMine)
+            if (showMine || (showMines && isMine))
                 b = new SolidBrush(Color.Red);
 
             if (explode)
                 b = new SolidBrush(Color.Black);
+
 
             g.FillRectangle(b, location.X, location.Y, 22, 22);
             g.DrawRectangle(p, location.X, location.Y, 22, 22);
@@ -70,7 +71,8 @@ namespace Minesweeper
         }
         public void enterNumber(int number)
         {
-            this.number = number;
+            if(!isFlagged)
+                this.number = number;
         }
         public int flag(Point mouseLocation)
         {
