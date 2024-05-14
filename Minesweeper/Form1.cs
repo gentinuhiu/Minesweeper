@@ -25,14 +25,16 @@ namespace Minesweeper
         {
             InitializeComponent();
             logs = new List<Log>();
-            setUp(true);
+            setUp(true, true);
         }
-        public void setUp(bool is_first)
+        public void setUp(bool isFirst, bool showForm)
         {
             Settings form = new Settings();
-            if(!is_first)
-                form.configure(gameSettings);
-            form.ShowDialog();
+            if(!isFirst)
+                form.configure(gameSettings, showForm);
+
+            if(showForm)
+                form.ShowDialog();
 
             gameSettings = form.gameSettings;
             field = new Field(gameSettings.fieldSize, gameSettings.minesCount);
@@ -52,7 +54,7 @@ namespace Minesweeper
 
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            setUp(false);
+            setUp(false, true);
         }
         private void historyToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -87,7 +89,7 @@ namespace Minesweeper
                         End_Game form = new End_Game(gameSettings, timer, flags, field.completionPercentage(), false);
                         form.ShowDialog();
                         logs.Add(form.log);
-                        setUp(false);
+                        setUp(false, false);
                     }
                     else
                     {
@@ -96,7 +98,7 @@ namespace Minesweeper
                             End_Game form = new End_Game(gameSettings, timer, flags, field.completionPercentage(), true);
                             form.ShowDialog();
                             logs.Add(form.log);
-                            setUp(false);
+                            setUp(false, false);
                         }
                     }
                 }
@@ -110,8 +112,10 @@ namespace Minesweeper
                     Invalidate();
                     if (checkStatus(result))
                     {
-                        MessageBox.Show("You won!", "Finished", MessageBoxButtons.OK);
-                        setUp(false);
+                        End_Game form = new End_Game(gameSettings, timer, flags, field.completionPercentage(), true);
+                        form.ShowDialog();
+                        logs.Add(form.log);
+                        setUp(false, false);
                     }
                 }
 

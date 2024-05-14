@@ -46,7 +46,7 @@ namespace Minesweeper
             gameSettings = new GameSettings(tbUsername.Text, fieldSize, difficulty);
             DialogResult = DialogResult.OK;
         }
-        public void configure(GameSettings gameSettings)
+        public void configure(GameSettings gameSettings, bool showForm)
         {
             tbUsername.Text = gameSettings.username;
 
@@ -61,6 +61,11 @@ namespace Minesweeper
             else if(gameSettings.difficulty == DIFFICULTY.Medium)
                 rbMediumDifficulty.Checked = true;
             else rbHard.Checked = true;
+
+            if (!showForm)
+            {
+                this.gameSettings = new GameSettings(gameSettings.username, gameSettings.fieldSizeStr, gameSettings.difficulty);
+            }
         }
     }
 }

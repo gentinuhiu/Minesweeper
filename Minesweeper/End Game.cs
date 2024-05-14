@@ -35,14 +35,15 @@ namespace Minesweeper
             {
                 label1.Text = "Congratulations, You Won!";
                 progressBar1.ForeColor = Color.Green;
-                progressBar1.Value = 100;
+                completionPercentage = 100;
             }
             else
             {
                 label1.Text = "Good Luck Next Time, You Lost!";
                 progressBar1.ForeColor = Color.Red;
-                progressBar1.Value = (int) completionPercentage;
             }
+
+            progressBar1.Value = (int) completionPercentage;
             Console.Write($"Completion Percentage: {completionPercentage}");
             label3.Text = "Game Settings: " + gameSettings.fieldSizeStr + " Field on " + gameSettings.difficulty + " Mode";
             label4.Text = "Time Played: " + (timer / 60).ToString("00") + ":" + (timer % 60).ToString("00");
