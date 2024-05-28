@@ -112,7 +112,7 @@
             this.groupBox2.Size = new System.Drawing.Size(261, 87);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Difficulty (Mines count)";
+            this.groupBox2.Text = "Difficulty (mines count)";
             // 
             // rbHard
             // 

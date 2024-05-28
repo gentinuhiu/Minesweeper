@@ -36,5 +36,23 @@ namespace Minesweeper
         {
             DialogResult = DialogResult.OK;
         }
+
+        private void cbSort_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbSort.Checked)
+            {
+                lbLogs.Items.Clear();
+                List<Log> won = logs.Where(i => i.victory).OrderByDescending(i => i.getCoefficient()).ToList();
+                won.ForEach(i => lbLogs.Items.Add(i));
+
+                List<Log> lost = logs.Where(i => !i.victory).OrderByDescending(i => i.getCoefficient()).ToList();
+                lost.ForEach(i => lbLogs.Items.Add(i));
+            }
+            else
+            {
+                lbLogs.Items.Clear();
+                logs.ForEach(log => lbLogs.Items.Add(log));
+            }
+        }
     }
 }

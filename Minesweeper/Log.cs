@@ -28,7 +28,28 @@ namespace Minesweeper
         public override string ToString()
         {
             string time = (timer / 60).ToString("00") + ":" + (timer % 60).ToString("00");
-            return $"{username}   -   Time: {time}   -   Completed: {completionPercentage.ToString("00")}%   ({fieldSize} Field on {difficulty} Mode)";
+            return $"({getCoefficientStr()}) {username}   -   Time: {time}   -   Completed: {completionPercentage.ToString("00")}%   ({fieldSize} Field on {difficulty} Mode)";
+        }
+        public double getCoefficient()
+        {
+            double size = 10;
+            double difficulty = 1;
+
+            if (fieldSize == FIELD_SIZE.Medium)
+                size = 15;
+            else if (fieldSize == FIELD_SIZE.Large)
+                size = 20;
+
+            if (this.difficulty == DIFFICULTY.Medium)
+                difficulty = 1.5;
+            else if (this.difficulty == DIFFICULTY.Hard)
+                difficulty = 2.5;
+
+            return (double)(size * difficulty * completionPercentage) / (double) timer;
+        }
+        public string getCoefficientStr()
+        {
+            return getCoefficient().ToString("00.00");
         }
     }
 }

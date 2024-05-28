@@ -105,6 +105,9 @@ namespace Minesweeper
             }
             else
             {
+                if (field.completionPercentage() == 0)
+                    return; 
+
                 int result = field.flag(e.Location);
 
                 if (result != -1)

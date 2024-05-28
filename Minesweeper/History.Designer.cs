@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lbLogs = new System.Windows.Forms.ListBox();
             this.btnOk = new System.Windows.Forms.Button();
+            this.cbSort = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -62,6 +63,17 @@
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
+            // cbSort
+            // 
+            this.cbSort.AutoSize = true;
+            this.cbSort.Location = new System.Drawing.Point(257, 21);
+            this.cbSort.Name = "cbSort";
+            this.cbSort.Size = new System.Drawing.Size(202, 20);
+            this.cbSort.TabIndex = 6;
+            this.cbSort.Text = "Sort by coefficient and victory";
+            this.cbSort.UseVisualStyleBackColor = true;
+            this.cbSort.CheckedChanged += new System.EventHandler(this.cbSort_CheckedChanged);
+            // 
             // History
             // 
             this.AcceptButton = this.btnOk;
@@ -69,6 +81,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnOk;
             this.ClientSize = new System.Drawing.Size(540, 456);
+            this.Controls.Add(this.cbSort);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.lbLogs);
             this.Controls.Add(this.label1);
@@ -85,5 +98,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lbLogs;
         private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.CheckBox cbSort;
     }
 }

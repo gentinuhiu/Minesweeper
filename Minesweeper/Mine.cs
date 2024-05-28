@@ -35,10 +35,13 @@ namespace Minesweeper
             if (isOpened)
                 b = new SolidBrush(Color.White);
 
-            if (isFlagged)
+            if (showMines && isMine)
+                b = new SolidBrush(Color.Red);
+
+                if (isFlagged)
                 b = new SolidBrush(Color.Orange);
 
-            if (showMine || (showMines && isMine))
+            if (showMine)
                 b = new SolidBrush(Color.Red);
 
             if (explode)
@@ -93,10 +96,15 @@ namespace Minesweeper
             }
             return -1;
         }
+        public bool check(Point mouseLocation)
+        {
+            return mouseLocation.X < location.X + 22 && mouseLocation.X > location.X && mouseLocation.Y < location.Y + 22 && mouseLocation.Y > location.Y;
+        }
         public int open(Point mouseLocation)
         {
             if (mouseLocation.X < location.X + 22 && mouseLocation.X > location.X && mouseLocation.Y < location.Y + 22 && mouseLocation.Y > location.Y)
             {
+           
                 if (isMine && !isFlagged)
                 {
                     showMine = true;
