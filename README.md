@@ -1,5 +1,6 @@
 # Minesweeper Game Documentation
-Project in Visual Programming 2024 using .NET Windows Form 
+Project in Visual Programming 2024 using .NET Windows Form
+<br> 
 Genti Nuhiu
 
 ## Game Description
