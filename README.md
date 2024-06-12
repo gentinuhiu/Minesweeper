@@ -1,6 +1,5 @@
 # Minesweeper Game Documentation
-Project in Visual Programming 2024 using .NET Windows Form<br> 
-Genti Nuhiu
+Project in .NET Windows Form by Genti Nuhiu
 
 ## Game Description
 The goal of Minesweeper is to uncover all the squares on a grid that do not contain mines without being "blown up" by clicking on a square with a mine underneath. Safe squares have numbers telling you how many mines touch the square. You can use the number clues to solve the game by opening all of the safe squares. If you click on a mine you lose the game!
