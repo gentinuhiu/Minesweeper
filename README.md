@@ -42,8 +42,9 @@ After clicking a safe square, the BFS algorithm will traverse through all safe s
 
 <img src="https://github.com/gentinuhiu/Minesweeper/blob/main/Minesweeper/github-images/grid-click.png" width="35%">
 
-Opening all safe squares<br>
-'''
+Function for opening all safe squares<br>
+      
+      {
         public void BFS(int startX, int startY)
         {
             int rows = field.Count;
@@ -90,31 +91,34 @@ Opening all safe squares<br>
         }
   
 Function for counting neighboring mines<br>
- '''
- public int checkMine(int x1, int y1)
- {
 
-     if (!(x1 >= 0 && x1 < field.Count && y1 >= 0 && y1 < field.Count))
-         return 0;
+  
+    public int checkMine(int x1, int y1)
+    {
 
-     int counter = 0;
-     if (x1 > 0 && field[x1 - 1][y1].isMine)
-         counter++;
-     if (x1 > 0 && y1 > 0 && field[x1 - 1][y1 - 1].isMine)
-         counter++;
-     if (x1 > 0 && y1 < field.Count - 1 && field[x1 - 1][y1 + 1].isMine)
-         counter++;
-     if (y1 < field.Count - 1 && field[x1][y1 + 1].isMine)
-         counter++;
-     if (y1 > 0 && field[x1][y1 - 1].isMine)
-         counter++;
-     if (x1 < field.Count - 1 && field[x1 + 1][y1].isMine)
-         counter++;
-     if (x1 < field.Count - 1 && y1 > 0 && field[x1 + 1][y1 - 1].isMine)
-         counter++;
-     if (x1 < field.Count - 1 && y1 < field.Count - 1 && field[x1 + 1][y1 + 1].isMine)
-         counter++;
+        if (!(x1 >= 0 && x1 < field.Count && y1 >= 0 && y1 < field.Count))
+          return 0;
 
-     return counter;
- }
-
+        int counter = 0;
+        if (x1 > 0 && field[x1 - 1][y1].isMine)
+          counter++;
+        if (x1 > 0 && y1 > 0 && field[x1 - 1][y1 - 1].isMine)
+          counter++;
+        if (x1 > 0 && y1 < field.Count - 1 && field[x1 - 1][y1 + 1].isMine)
+          counter++;
+        if (y1 < field.Count - 1 && field[x1][y1 + 1].isMine)
+          counter++;
+        if (y1 > 0 && field[x1][y1 - 1].isMine)
+          counter++;
+        if (x1 < field.Count - 1 && field[x1 + 1][y1].isMine)
+          counter++;
+        if (x1 < field.Count - 1 && y1 > 0 && field[x1 + 1][y1 - 1].isMine)
+          counter++;
+        if (x1 < field.Count - 1 && y1 < field.Count - 1 && field[x1 + 1][y1 + 1].isMine)
+          counter++;
+        
+        return counter;
+    }
+  
+### 5. History and ranking
+text-text-text
