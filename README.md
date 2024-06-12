@@ -10,6 +10,22 @@ The goal of Minesweeper is to uncover all the squares on a grid that do not cont
 <img src="https://github.com/gentinuhiu/Minesweeper/blob/main/Minesweeper/github-images/mines-hide.png" width="49%">
 </div>
 
+## Gameplay
+### 1. Objective
+Click all the squares that do not contain mines and flag the squares you suspect of having mines underneath.
+
+### 2. Controls
+<ul>
+  <li>Left-click: open mine</li>
+  <li>Right-click: flag mine</li>
+</ul>
+
+### 3. Rules
+<ul>
+  <li>The game is won only when all safe squares have been opened and all mines have been flagged</li>
+  <li>The game is lost only when a mine square has been opened</li>
+</ul>
+
 ## Game Functionalities
 ### 1. Settings
 The game starts with a window where you can enter your game name, select grid size, select difficulty (number of mines in the grid) and an option to show the hidden mines.
@@ -44,7 +60,6 @@ After clicking a safe square, the BFS algorithm will traverse through all safe s
 
 Function for opening all safe squares<br>
       
-      {
         public void BFS(int startX, int startY)
         {
             int rows = field.Count;
@@ -88,7 +103,6 @@ Function for opening all safe squares<br>
                     }
                 }
             }
-        }
   
 Function for counting neighboring mines<br>
 
@@ -121,4 +135,10 @@ Function for counting neighboring mines<br>
     }
   
 ### 5. History and ranking
-text-text-text
+History window keeps a log for each game played. The log will be saved only when you finish or lose the game, not when you restart it. The history window has the option to sort all the games according to their coefficient in order to assure fairness among players who play in different grid size and difficulty. The coefficient is calculated in the following way:<br>
+(size * difficulty * completion percentage) / (timer in seconds)
+
+<img src="https://github.com/gentinuhiu/Minesweeper/blob/main/Minesweeper/github-images/history.png" width="35%">
+
+### 6. New game 
+The game saves your settings so when you start a new game, the user selected settings will show up, instead of the default ones.  
