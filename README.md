@@ -1,6 +1,5 @@
 # Minesweeper Game Documentation
-Project in Visual Programming 2024 using .NET Windows Form
-<br> 
+Project in Visual Programming 2024 using .NET Windows Form<br> 
 Genti Nuhiu
 
 ## Game Description
@@ -12,3 +11,110 @@ The goal of Minesweeper is to uncover all the squares on a grid that do not cont
 </div>
 
 ## Game Functionalities
+### 1. Settings
+The game starts with a window where you can enter your game name, select grid size, select difficulty (number of mines in the grid) and an option to show the hidden mines.
+
+<img src="https://github.com/gentinuhiu/Minesweeper/blob/main/Minesweeper/github-images/settings.png" width="35%">
+
+### 2. Initializing grid
+The game creates a grid of cells according to the selected grid size in settings:
+<ul>
+  <li>Small: 10x10</li>
+  <li>Medium: 15x15</li>
+  <li>Large: 20x20</li>
+</ul>
+
+### 3. Planting mines
+The game will plant the mines across the grid only after the first click has been made, in order to avoid clicking the mine in the first try.<br>
+The ratio mines to squares in the grid is determined by the selected difficulty in settings:
+<ul>
+  <li>Easy: 10/100</li>
+  <li>Medium: 15/100</li>
+  <li>Hard: 25/100</li>
+</ul>
+For example: in a game with large field (20x20) and hard difficulty, the number of mines is 50.<br>
+The game allows you to show the position of the hidden mines in the grid (used for testing purposes only).<br>
+
+<img src="https://github.com/gentinuhiu/Minesweeper/blob/main/Minesweeper/github-images/mines-show.png" width="35%">
+
+### 4. Opening safe squares
+After clicking a safe square, the BFS algorithm will traverse through all safe squares starting from the one we clicked, till it reaches a square which is neighboring at least one mine. When such mine is reached, a number representing the neighboring mines will be written in the square.
+
+<img src="https://github.com/gentinuhiu/Minesweeper/blob/main/Minesweeper/github-images/grid-click.png" width="35%">
+
+Opening all safe squares<br>
+'''
+        public void BFS(int startX, int startY)
+        {
+            int rows = field.Count;
+            int cols = field.Count;
+            bool[,] visited = new bool[rows, cols];
+            Queue<Point> queue = new Queue<Point>();
+
+            int[] dx = { -1, 1, 0, 0 };
+            int[] dy = { 0, 0, -1, 1 };
+
+            queue.Enqueue(new Point(startX, startY));
+            visited[startX, startY] = true;
+
+            while (queue.Count > 0)
+            {
+                Point current = queue.Dequeue();
+                int x = current.X;
+                int y = current.Y;
+
+                if (field[x][y].isMine)
+                    continue;
+
+                field[x][y].open();
+
+                int counter = checkMine(x, y); // counting neighboring mines
+                if (counter != 0)
+                {
+                    field[x][y].enterNumber(counter);
+                    continue;
+                }
+
+                for (int i = 0; i < 4; i++)
+                {
+                    int nx = x + dx[i];
+                    int ny = y + dy[i];
+
+                    if (nx >= 0 && nx < rows && ny >= 0 && ny < cols && !visited[nx, ny])
+                    {
+                        visited[nx, ny] = true;
+                        queue.Enqueue(new Point(nx, ny));
+                    }
+                }
+            }
+        }
+  
+Function for counting neighboring mines<br>
+ '''
+ public int checkMine(int x1, int y1)
+ {
+
+     if (!(x1 >= 0 && x1 < field.Count && y1 >= 0 && y1 < field.Count))
+         return 0;
+
+     int counter = 0;
+     if (x1 > 0 && field[x1 - 1][y1].isMine)
+         counter++;
+     if (x1 > 0 && y1 > 0 && field[x1 - 1][y1 - 1].isMine)
+         counter++;
+     if (x1 > 0 && y1 < field.Count - 1 && field[x1 - 1][y1 + 1].isMine)
+         counter++;
+     if (y1 < field.Count - 1 && field[x1][y1 + 1].isMine)
+         counter++;
+     if (y1 > 0 && field[x1][y1 - 1].isMine)
+         counter++;
+     if (x1 < field.Count - 1 && field[x1 + 1][y1].isMine)
+         counter++;
+     if (x1 < field.Count - 1 && y1 > 0 && field[x1 + 1][y1 - 1].isMine)
+         counter++;
+     if (x1 < field.Count - 1 && y1 < field.Count - 1 && field[x1 + 1][y1 + 1].isMine)
+         counter++;
+
+     return counter;
+ }
+
