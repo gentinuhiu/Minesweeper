@@ -52,8 +52,8 @@ The game allows you to show the position of the hidden mines in the grid (used f
 
 <img src="https://github.com/gentinuhiu/Minesweeper/blob/main/Minesweeper/github-images/mines-show.png" width="35%">
 
-### 4. Opening safe squares
-After clicking a safe square, the BFS algorithm will traverse through all safe squares starting from the one we clicked, till it reaches a square which is neighboring at least one mine. When such mine is reached, a number representing the neighboring mines will be written in the square.
+### 4. Opening safe squares and flagging
+After clicking a safe square, the BFS algorithm will traverse through all safe squares starting from the one we clicked, till it reaches a square which is neighboring at least one mine. When such mine is reached, a number representing the neighboring mines will be written in the square. With right-click, we can flag the square we suspect of having mine.
 
 <img src="https://github.com/gentinuhiu/Minesweeper/blob/main/Minesweeper/github-images/grid-click.png" width="35%">
 
