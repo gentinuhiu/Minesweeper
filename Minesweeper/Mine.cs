@@ -31,24 +31,42 @@ namespace Minesweeper
         {
             Brush b = new SolidBrush(Color.DarkGray);
             Pen p = new Pen(Color.Gray);
+            bool colored = false;
 
             if (isOpened)
                 b = new SolidBrush(Color.White);
 
             if (showMines && isMine)
-                b = new SolidBrush(Color.Red);
-
-                if (isFlagged)
-                b = new SolidBrush(Color.Orange);
-
+            {
+                Image mineImage = Image.FromFile(@"images/mine.png");
+                g.DrawImage(mineImage, location.X, location.Y, 22, 22);
+                colored = true;
+            }
+            if (isFlagged)
+            {
+                Image flagImage = Image.FromFile(@"images/flag.png");
+                g.DrawImage(flagImage, location.X, location.Y, 22, 22);
+                colored = true;
+            }
             if (showMine)
-                b = new SolidBrush(Color.Red);
+            {
+                Image mineImage = Image.FromFile(@"images/mine.png");
+                g.DrawImage(mineImage, location.X, location.Y, 22, 22);
+                colored = true;
+            }
 
             if (explode)
-                b = new SolidBrush(Color.Black);
+            {
+                Image explodeImage = Image.FromFile(@"images/exploded.png");
+                g.DrawImage(explodeImage, location.X, location.Y, 22, 22);
+                colored = true;
+            }
 
 
-            g.FillRectangle(b, location.X, location.Y, 22, 22);
+            if(!colored)
+            {
+                g.FillRectangle(b, location.X, location.Y, 22, 22);
+            }
             g.DrawRectangle(p, location.X, location.Y, 22, 22);
             b.Dispose();
             p.Dispose();
